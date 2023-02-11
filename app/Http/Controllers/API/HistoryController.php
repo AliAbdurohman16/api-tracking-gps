@@ -76,8 +76,10 @@ class HistoryController extends BaseController
      */
     public function update(Request $request, History $history)
     {
+        $header = $request->header('Token');
+        $data = User::where('remember_token', $header)->first();
+
         $validator = Validator::make($request->all(), [
-            'user_id' => 'required',
             'longtitude' => 'required',
             'latitude' => 'required',
         ]); 
@@ -87,6 +89,7 @@ class HistoryController extends BaseController
         }
 
         $input = $request->all();
+        $input['user_id'] = $data->id;
         $history->update($input);
 
         return $this->sendResponse($history, 'Data has been successfully updated');
