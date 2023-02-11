@@ -94,7 +94,7 @@ class HistoryController extends BaseController
             $history->update($input);
             return $this->sendResponse($history, 'Data has been successfully updated');
         } else {
-            return $this->sendResponse($history, 'Data has been unsuccessfully updated');
+            return $this->sendResponseErr('Data has been unsuccessfully updated');
         }
 
     }
