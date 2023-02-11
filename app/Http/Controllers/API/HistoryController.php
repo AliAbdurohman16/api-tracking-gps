@@ -76,26 +76,27 @@ class HistoryController extends BaseController
      */
     public function update(Request $request, History $history)
     {
-        $header = $request->header('Token');
-        $data = User::where('remember_token', $header)->first();
+        // $header = $request->header('Token');
+        // $data = User::where('remember_token', $header)->first();
 
-        if ($data) {
-            $validator = Validator::make($request->all(), [
-                'longtitude' => 'required',
-                'latitude' => 'required',
-            ]); 
+        // if ($data) {
+        //     $validator = Validator::make($request->all(), [
+        //         'longtitude' => 'required',
+        //         'latitude' => 'required',
+        //     ]); 
 
-            if ($validator->fails()) {
-                return $this->sendError('Validation Error.', $validator->errors());
-            }
+        //     if ($validator->fails()) {
+        //         return $this->sendError('Validation Error.', $validator->errors());
+        //     }
 
-            $input = $request->all();
-            $input['user_id'] = $data->id;
-            $history->update($input);
-            return $this->sendResponse($history, 'Data has been successfully updated');
-        } else {
-            return $this->sendResponseErr('Data has been unsuccessfully updated');
-        }
+        //     $input = $request->all();
+        //     $input['user_id'] = $data->id;
+        //     $history->update($input);
+        //     return $this->sendResponse($history, 'Data has been successfully updated');
+        // } else {
+        //     return $this->sendResponseErr('Data has been unsuccessfully updated');
+        // }
+            return $this->sendResponseErr('Check');
 
     }
 
